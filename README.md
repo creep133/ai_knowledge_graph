@@ -1,1 +1,41 @@
-uv add beautifulsoup4 openai python-dotenv pyvis requests
+# AI 로 지식그래프 만들기
+
+진격의 거인 줄거리를 AI로 분석하여 주인공 중심의 지식 그래프로 만들어봅니다!
+
+## 프로젝트 소개
+
+이 프로젝트는 자동으로:
+1. **수집** - 위키피디아에서 에피소드 데이터 수집 (진격의 거인 에피소드)
+2. **처리** - OpenAI를 사용하여 텍스트에서 개체와 관계 추출
+3. **시각화** - 인터랙티브 웹 형태의 지식 그래프 생성
+
+## 사전 요구사항
+- 파이썬 설치
+- OpenAI API 키 설정
+
+## 초기 셋팅
+
+2. **OpenAI API 키 설정:**
+프로젝트 루트에 `.env` 파일 생성:
+```
+OPENAI_API_KEY=여기에_API_키_입력
+```
+
+## 실행 방법
+
+스크립트를 순서대로 실행하세요:
+
+```bash
+# 1단계: 위키피디아에서 에피소드 데이터 수집
+uv run 1_collect_data.py
+
+# 2단계: AI로 데이터 처리하여 지식 그래프 생성
+uv run 2_process_data.py
+
+# 3단계: 시각화 페이지 생성
+uv run 3_visualize_data.py
+
+# 4단계 : 데이터 표준화
+uv run 4_process_data_upgrade.py
+
+```
