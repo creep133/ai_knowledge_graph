@@ -1,0 +1,1368 @@
+{
+  "nodes": [
+    {
+      "id": "N0",
+      "label": "귀살대",
+      "properties": {
+        "name": "카마도 탄지로"
+      }
+    },
+    {
+      "id": "N1",
+      "label": "귀살대",
+      "properties": {
+        "name": "카마도 네즈코"
+      }
+    },
+    {
+      "id": "N2",
+      "label": "귀살대",
+      "properties": {
+        "name": "토미오카 기유"
+      }
+    },
+    {
+      "id": "N3",
+      "label": "귀살대",
+      "properties": {
+        "name": "우로코다키 사콘지"
+      }
+    },
+    {
+      "id": "N4",
+      "label": "귀살대",
+      "properties": {
+        "name": "사비토"
+      }
+    },
+    {
+      "id": "N5",
+      "label": "귀살대",
+      "properties": {
+        "name": "마코모"
+      }
+    },
+    {
+      "id": "N13",
+      "label": "도깨비",
+      "properties": {
+        "name": "키부츠지 무잔"
+      }
+    },
+    {
+      "id": "N14",
+      "label": "도깨비",
+      "properties": {
+        "name": "스사마루"
+      }
+    },
+    {
+      "id": "N15",
+      "label": "도깨비",
+      "properties": {
+        "name": "야하바"
+      }
+    },
+    {
+      "id": "N6",
+      "label": "귀살대",
+      "properties": {
+        "name": "아가츠마 젠이츠"
+      }
+    },
+    {
+      "id": "N7",
+      "label": "귀살대",
+      "properties": {
+        "name": "하시비라 이노스케"
+      }
+    },
+    {
+      "id": "N16",
+      "label": "도깨비",
+      "properties": {
+        "name": "쿄우가이"
+      }
+    },
+    {
+      "id": "N11",
+      "label": "귀살대",
+      "properties": {
+        "name": "코쵸우 시노부"
+      }
+    },
+    {
+      "id": "N17",
+      "label": "도깨비",
+      "properties": {
+        "name": "루이"
+      }
+    },
+    {
+      "id": "N10",
+      "label": "귀살대",
+      "properties": {
+        "name": "우부야시키 카가야"
+      }
+    },
+    {
+      "id": "N12",
+      "label": "귀살대",
+      "properties": {
+        "name": "시나즈가와 사네미"
+      }
+    },
+    {
+      "id": "N8",
+      "label": "귀살대",
+      "properties": {
+        "name": "츠유리 카나오"
+      }
+    },
+    {
+      "id": "N9",
+      "label": "귀살대",
+      "properties": {
+        "name": "렌고쿠 쿄쥬로"
+      }
+    },
+    {
+      "id": "N18",
+      "label": "도깨비",
+      "properties": {
+        "name": "엔무"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "SIBLING",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "DEFENDS",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "ENCOUNTERS",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "SPARES",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "DIRECTS",
+      "start_node_id": "N2",
+      "end_node_id": "N3",
+      "properties": {
+        "message_for": "N0",
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "MEETS",
+      "start_node_id": "N0",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "WARNS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "WARNS",
+      "start_node_id": "N3",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "TESTS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "REQUESTS",
+      "start_node_id": "N2",
+      "end_node_id": "N3",
+      "properties": {
+        "about": "train Tanjiro",
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N3",
+      "end_node_id": "N4",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N3",
+      "end_node_id": "N5",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "TRAINS",
+      "start_node_id": "N5",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "SPARS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N4",
+      "properties": {
+        "outcome": "Tanjiro wins",
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "MENTORS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "MENTORS",
+      "start_node_id": "N3",
+      "end_node_id": "N4",
+      "properties": {
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "MENTORS",
+      "start_node_id": "N3",
+      "end_node_id": "N5",
+      "properties": {
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E05"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E05"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N1",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N1",
+      "end_node_id": "N13",
+      "properties": {
+        "context": "protects others, battles demon clone",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "context": "questions about Muzan Kibutsuji",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "SEEKS",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "reason": "scent leading to Muzan",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "TRANSFORMS",
+      "start_node_id": "N13",
+      "end_node_id": "N13",
+      "properties": {
+        "context": "Muzan turns a passerby into a demon",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "FLEES_FROM",
+      "start_node_id": "N13",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "VOWS_TO_KILL",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "TASKS",
+      "start_node_id": "N13",
+      "end_node_id": "N14",
+      "properties": {
+        "target": "Tanjiro Kamado",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "TASKS",
+      "start_node_id": "N13",
+      "end_node_id": "N15",
+      "properties": {
+        "target": "Tanjiro Kamado",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "ATTACKS",
+      "start_node_id": "N14",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "ATTACKS",
+      "start_node_id": "N15",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "MEMBER_OF",
+      "start_node_id": "N14",
+      "end_node_id": "N13",
+      "properties": {
+        "group": "Twelve Kizuki",
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "MEMBER_OF",
+      "start_node_id": "N15",
+      "end_node_id": "N13",
+      "properties": {
+        "group": "Twelve Kizuki",
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N15",
+      "properties": {
+        "outcome": "victory",
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N1",
+      "end_node_id": "N14",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N15",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N1",
+      "end_node_id": "N14",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "TRICKED_BY",
+      "start_node_id": "N14",
+      "end_node_id": "N13",
+      "properties": {
+        "cause": "said Muzan's name, curse triggered",
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "STOPS",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "JOINS_MISSION",
+      "start_node_id": "N6",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "TRAVELS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "ENTERS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "ENTERS",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "ENTER",
+      "start_node_id": "N6",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "FINDS",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "FINDS",
+      "start_node_id": "N6",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "PLANS_ATTACK_ON",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "APPEARS",
+      "start_node_id": "N7",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N6",
+      "end_node_id": "N16",
+      "properties": {
+        "outcome": "victory (implied vs a demon)",
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "STRIPPED_OF_RANK",
+      "start_node_id": "N13",
+      "end_node_id": "N16",
+      "properties": {
+        "reason": "Kyogai removed from Twelve Kizuki",
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N16",
+      "properties": {
+        "outcome": "victory",
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N6",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "CHASES",
+      "start_node_id": "N6",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "ENCOUNTERS",
+      "start_node_id": "N6",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "MISSION_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "MISSION_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "MISSION_WITH",
+      "start_node_id": "N6",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "SENT_TO_MISSION",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "Mt. Natagumo",
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "SENT_TO_MISSION",
+      "start_node_id": "N11",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "Mt. Natagumo",
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "ALLIES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N7",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "SEARCHES_FOR",
+      "start_node_id": "N6",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "ENCOUNTERS",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "ARRIVES_WITH",
+      "start_node_id": "N2",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "SPLITS_UP",
+      "start_node_id": "N2",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "RESCUES",
+      "start_node_id": "N11",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "IMPRESSES",
+      "start_node_id": "N2",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "CHALLENGES",
+      "start_node_id": "N7",
+      "end_node_id": "N2",
+      "properties": {
+        "outcome": "denied",
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "GIVES_ANTIDOTE",
+      "start_node_id": "N11",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "OVERPOWERS",
+      "start_node_id": "N17",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "INTERVENES_FOR",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "DECLARES_SISTER",
+      "start_node_id": "N17",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "RESTRAINS",
+      "start_node_id": "N17",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "CUTS_THREADS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "TRAPS",
+      "start_node_id": "N17",
+      "end_node_id": "N0",
+      "properties": {
+        "method": "Blood Demon Art",
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "DESTROYS_ATTACK",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "OVERWHELMS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "USES_BLOOD_DEMON_ART_ON",
+      "start_node_id": "N1",
+      "end_node_id": "N17",
+      "properties": {
+        "effect": "burns threads",
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "BEHEADS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "KILLS",
+      "start_node_id": "N2",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "HAS_FAMILIAL_BOND_ATTEMPT",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "TRANSFORMS",
+      "start_node_id": "N13",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "MEETS",
+      "start_node_id": "N13",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "KILLED_BY",
+      "start_node_id": "N17",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "COMFORTS",
+      "start_node_id": "N0",
+      "end_node_id": "N17",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "SCOLDS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "DEFENDS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "DEFENDS",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "INTERCEPTS",
+      "start_node_id": "N11",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "FAILS_TO_KILL",
+      "start_node_id": "N11",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "FOUND_BY",
+      "start_node_id": "N7",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "DEFENDS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "DEFENDS",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "SANCTIONS",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "SANCTIONS",
+      "start_node_id": "N10",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "PROPOSES_EXECUTION",
+      "start_node_id": "N12",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "PROPOSES_EXECUTION",
+      "start_node_id": "N12",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "PROPOSES_EXECUTION",
+      "start_node_id": "N12",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "SUPPORTS",
+      "start_node_id": "N3",
+      "end_node_id": "N1",
+      "properties": {
+        "belief": "can resist humans",
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "SUPPORTS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "MEETS",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "TESTS",
+      "start_node_id": "N12",
+      "end_node_id": "N1",
+      "properties": {
+        "method": "blood enticement",
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "RESISTS",
+      "start_node_id": "N1",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "ACKNOWLEDGES",
+      "start_node_id": "N10",
+      "end_node_id": "N1",
+      "properties": {
+        "role": "Demon Slayer",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "ACKNOWLEDGES",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "role": "Demon Slayer",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "TAKEN_TO",
+      "start_node_id": "N1",
+      "end_node_id": "N11",
+      "properties": {
+        "place": "Butterfly Mansion",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "TAKEN_TO",
+      "start_node_id": "N0",
+      "end_node_id": "N11",
+      "properties": {
+        "place": "Butterfly Mansion",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "MEETS",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "RECOGNIZES",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "context": "Final Selection",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "state": "in recovery",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "state": "in recovery",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "REALIZES_STRATEGY",
+      "start_node_id": "N10",
+      "end_node_id": "N17",
+      "properties": {
+        "diversion_for": "Muzan Kibutsuji",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "HIDES_LOCATION_OF",
+      "start_node_id": "N17",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "TARGETS",
+      "start_node_id": "N10",
+      "end_node_id": "N13",
+      "properties": {
+        "intent": "to kill",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N6",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRAINS_UNDER",
+      "start_node_id": "N0",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "PROMISES_TO_PROTECT",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "COMMENDS",
+      "start_node_id": "N11",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRUSTS",
+      "start_node_id": "N11",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N6",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N7",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N6",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "ENCOURAGES",
+      "start_node_id": "N11",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N8",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N8",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N8",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "outcome": "victory",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "SEEKS_ADVICE_FROM",
+      "start_node_id": "N0",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "DIRECTS_TO",
+      "start_node_id": "N11",
+      "end_node_id": "N9",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "SUPPORTS",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "KILLS",
+      "start_node_id": "N13",
+      "end_node_id": "N17",
+      "properties": {
+        "context": "Rui is killed before Muzan summons the Lower Ranks",
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "STRENGTHENS",
+      "start_node_id": "N13",
+      "end_node_id": "N18",
+      "properties": {
+        "method": "blood",
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "INCENTIVIZES_KILLING",
+      "start_node_id": "N13",
+      "end_node_id": "N0",
+      "properties": {
+        "target": "Tanjiro",
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "ASSIGNS",
+      "start_node_id": "N9",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "ASSIGNS",
+      "start_node_id": "N9",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "ASSIGNS",
+      "start_node_id": "N9",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "INTERACTS",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "action": "convinces Kanao to listen to her heart",
+        "episode_number": "S1E26"
+      }
+    },
+    {
+      "type": "ON_TRAIN_WITH",
+      "start_node_id": "N9",
+      "end_node_id": "N18",
+      "properties": {
+        "episode_number": "S1E26"
+      }
+    }
+  ]
+}

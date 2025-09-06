@@ -8,7 +8,6 @@ load_dotenv()
 
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-
 PropertyValue = Union[str, int, float, bool, None]
 
 class Node(BaseModel):
@@ -51,17 +50,18 @@ Make sure you adhere to the following rules to produce valid JSON objects:
 """
 
 
-UPDATED_TEMPLATE="""
+
+UPDATED_TEMPLATE = """
 You are a top-tier algorithm designed for extracting information in structured formats to build a knowledge graph. Extract the entities (nodes) and specify their type from the following text, but **you MUST select nodes ONLY from the following predefined set** (see the provided NODES list below). Do not create any new nodes or use names that do not exactly match one in the NODES list.
 
 Also extract the relationships between these nodes. Return the result as JSON using the following format:
 
 {
   "nodes": [
-    {"id": "N0", "label": "사람", "properties": {"name": "Eren Jaeger"}}
+    {"id": "N0", "label": "인간", "properties": {"name": "Tanjiro Kamado"}}
   ],
   "relationships": [
-    {"type": "KNOWS", "start_node_id": "N0", "end_node_id": "N1", "properties": {"since": "2024-08-01"}}
+    {"type": "FIGHTS", "start_node_id": "N0", "end_node_id": "N13", "properties": {"outcome": "victory"}}
   ]
 }
 
@@ -72,25 +72,72 @@ Additional rules:
 
 NODES =
 [
-  {"id":"N0",  "label":"사람", "properties":{"name":"Eren Jaeger"}},
-  {"id":"N1",  "label":"사람", "properties":{"name":"Mikasa Ackerman"}},
-  {"id":"N2",  "label":"사람", "properties":{"name":"Armin Arlert"}},
-  {"id":"N3",  "label":"사람", "properties":{"name":"Levi Ackerman"}},
-  {"id":"N4",  "label":"사람", "properties":{"name":"Erwin Smith"}},
-  {"id":"N5",  "label":"사람", "properties":{"name":"Hange Zoë"}},
-  {"id":"N6",  "label":"사람", "properties":{"name":"Jean Kirstein"}},
-  {"id":"N7",  "label":"사람", "properties":{"name":"Reiner Braun"}},
-  {"id":"N8",  "label":"사람", "properties":{"name":"Bertholdt Hoover"}},
-  {"id":"N9",  "label":"사람", "properties":{"name":"Annie Leonhart"}},
-  {"id":"N10", "label":"사람", "properties":{"name":"Grisha Jaeger"}},
-  {"id":"N11", "label":"거인", "properties":{"name":"Female Titan"}},
-  {"id":"N12", "label":"거인", "properties":{"name":"Eren's Titan"}},
-  {"id":"N13", "label":"거인", "properties":{"name":"Colossal Titan"}},
-  {"id":"N14", "label":"거인", "properties":{"name":"Armored Titan"}}
+  {"id":"N0",  "label":"인간", "properties":{"name":"Tanjiro Kamado"}},
+  {"id":"N1",  "label":"인간", "properties":{"name":"Nezuko Kamado"}},
+  {"id":"N2",  "label":"인간", "properties":{"name":"Giyu Tomioka"}},
+  {"id":"N3",  "label":"인간", "properties":{"name":"Sakonji Urokodaki"}},
+  {"id":"N4",  "label":"인간", "properties":{"name":"Sabito"}},
+  {"id":"N5",  "label":"인간", "properties":{"name":"Makomo"}},
+  {"id":"N6",  "label":"인간", "properties":{"name":"Zenitsu Agatsuma"}},
+  {"id":"N7",  "label":"인간", "properties":{"name":"Inosuke Hashibira"}},
+  {"id":"N8",  "label":"인간", "properties":{"name":"Kanao Tsuyuri"}},
+  {"id":"N9",  "label":"인간", "properties":{"name":"Kyojuro Rengoku"}},
+  {"id":"N10", "label":"인간", "properties":{"name":"Kagaya Ubuyashiki"}},
+  {"id":"N11", "label":"인간", "properties":{"name":"Shinobu Kocho"}},
+  {"id":"N12", "label":"인간", "properties":{"name":"Sanemi Shinazugawa"}},
+  {"id":"N13", "label":"도깨비", "properties":{"name":"Muzan Kibutsuji"}},
+  {"id":"N14", "label":"도깨비", "properties":{"name":"Susamaru"}},
+  {"id":"N15", "label":"도깨비", "properties":{"name":"Yahaba"}},
+  {"id":"N16", "label":"도깨비", "properties":{"name":"Kyogai"}},
+  {"id":"N17", "label":"도깨비", "properties":{"name":"Rui"}},
+  {"id":"N18", "label":"도깨비", "properties":{"name":"Enmu"}}
 ]
-
-
 """
+
+
+
+###### 진격의 거인 예시 #########
+
+# UPDATED_TEMPLATE="""
+# You are a top-tier algorithm designed for extracting information in structured formats to build a knowledge graph. Extract the entities (nodes) and specify their type from the following text, but **you MUST select nodes ONLY from the following predefined set** (see the provided NODES list below). Do not create any new nodes or use names that do not exactly match one in the NODES list.
+
+# Also extract the relationships between these nodes. Return the result as JSON using the following format:
+
+# {
+#   "nodes": [
+#     {"id": "N0", "label": "사람", "properties": {"name": "Eren Jaeger"}}
+#   ],
+#   "relationships": [
+#     {"type": "KNOWS", "start_node_id": "N0", "end_node_id": "N1", "properties": {"since": "2024-08-01"}}
+#   ]
+# }
+
+# Additional rules:
+# - Use only nodes from the NODES list. Do not invent or substitute nodes.
+# - Skip any relationship if one of its entities is not in NODES.
+# - Only output valid relationships where both endpoints exist in NODES and the direction matches their types.
+
+# NODES =
+# [
+#   {"id":"N0",  "label":"사람", "properties":{"name":"Eren Jaeger"}},
+#   {"id":"N1",  "label":"사람", "properties":{"name":"Mikasa Ackerman"}},
+#   {"id":"N2",  "label":"사람", "properties":{"name":"Armin Arlert"}},
+#   {"id":"N3",  "label":"사람", "properties":{"name":"Levi Ackerman"}},
+#   {"id":"N4",  "label":"사람", "properties":{"name":"Erwin Smith"}},
+#   {"id":"N5",  "label":"사람", "properties":{"name":"Hange Zoë"}},
+#   {"id":"N6",  "label":"사람", "properties":{"name":"Jean Kirstein"}},
+#   {"id":"N7",  "label":"사람", "properties":{"name":"Reiner Braun"}},
+#   {"id":"N8",  "label":"사람", "properties":{"name":"Bertholdt Hoover"}},
+#   {"id":"N9",  "label":"사람", "properties":{"name":"Annie Leonhart"}},
+#   {"id":"N10", "label":"사람", "properties":{"name":"Grisha Jaeger"}},
+#   {"id":"N11", "label":"거인", "properties":{"name":"Female Titan"}},
+#   {"id":"N12", "label":"거인", "properties":{"name":"Eren's Titan"}},
+#   {"id":"N13", "label":"거인", "properties":{"name":"Colossal Titan"}},
+#   {"id":"N14", "label":"거인", "properties":{"name":"Armored Titan"}}
+# ]
+
+
+# """
 
 
 
@@ -109,9 +156,9 @@ def llm_call_structured(prompt: str, model: str = "gpt-4.1") -> GraphResponse:
 
 
 # 예시:
-# 그래프1: nodes: [N1(에렌), N2(미카사)], relationships: [에렌->미카사: 친구]
-# 그래프2: nodes: [N1(에렌), N3(리바이)], relationships: [리바이->에르빈: 부하]  # N1 중복
-# 결합된 그래프: nodes: [N1(에렌), N2(미카사), N3(리바이)], relationships: [친구, 부하]  # 중복 제거
+# 그래프1: nodes: [N1(탄지로), N2(네즈코)], relationships: [탄지로->네즈코: 형제]
+# 그래프2: nodes: [N1(탄지로), N3(기유)], relationships: [기유->탄지로: 지도]  # N1 중복
+# 결합된 그래프: nodes: [N1(탄지로), N2(네즈코), N3(기유)], relationships: [형제, 지도]  # 중복 제거
 
 def combine_chunk_graphs(chunk_graphs: list) -> 'GraphResponse':
     """
@@ -151,7 +198,7 @@ if __name__ == "__main__":
     
     # 1기 1화 테스트
     sample_episode = """
-    For over a century, humans have been living in settlements surrounded by three 50-meter gigantic walls, Wall Maria, Wall Rose and Wall Sina, which prevent the Titans, giant humanoid creatures who eat humans, from entering. Eren Jaeger , of the town called the Shiganshina District, wishes to see the outside world by joining the Scout Regiment , as he likens living in the cities to being like livestock. His resolve impresses his father Grisha Jaeger , who promises to show him what lies in their basement once he returns. Things change when the Colossal Titan, a giant 60-meter Titan taller than regular ones, appears and destroys the gate, allowing smaller Titans to enter. As the town erupts into mass panic, Eren and his friend Mikasa Ackerman find Eren's mother Carla Jaeger pinned under their collapsed house. A Smiling Titan approaches and Carla begs them to flee. City guard Hannes promises Carla to protect the kids. As he flees carrying them, Eren watches in horror as the Smiling Titan eats his mother.
+    Tanjiro Kamado lives a quiet, peaceful life with his family in the snowy mountains of Japan, providing for them by selling charcoal at the nearby town. One day, he returns home and finds his entire family slaughtered in a demon attack, with the exception of his younger sister, Nezuko, who has been transformed into a demon herself. A Demon Slayer, Giyu Tomioka, appears to kill Nezuko, but Tanjiro attempts to defend her. Surprised to see Nezuko resist her demonic urges and impressed by Tanjiro's potential, he decides to spare her life, telling him to go find a man named Sakonji Urokodaki on Mt. Sagiri. Tanjiro and Nezuko bury their family before departing.
     """
     prompt = DEFAULT_TEMPLATE.format(text=sample_episode)
     result: GraphResponse = llm_call_structured(prompt)

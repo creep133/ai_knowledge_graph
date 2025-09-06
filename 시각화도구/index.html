@@ -1160,57 +1160,57 @@
         const sampleData = {
             "nodes": [
                 {
-                    "id": "N0",
-                    "label": "사람",
+                    "id": "N0", 
+                    "label": "인간",
                     "properties": {
-                        "name": "에렌 예거"
+                        "name": "탄지로"
                     }
                 },
                 {
                     "id": "N1",
-                    "label": "사람",
+                    "label": "인간",
                     "properties": {
-                        "name": "미카사 아커만"
+                        "name": "네즈코"
                     }
                 },
                 {
                     "id": "N2",
-                    "label": "사람",
+                    "label": "인간",
                     "properties": {
-                        "name": "아르민 알레르트"
+                        "name": "우로코다키"
                     }
                 },
                 {
                     "id": "N3",
-                    "label": "거인",
+                    "label": "귀살대",
                     "properties": {
-                        "name": "초대형 거인"
+                        "name": "기유"
                     }
                 }
             ],
             "relationships": [
                 {
-                    "type": "친구",
+                    "type": "PROTECTS",
                     "start_node_id": "N0",
-                    "end_node_id": "N1",
+                    "end_node_id": "N1", 
                     "properties": {
-                        "episode_number": "1"
+                        "episode_number": "S1E1"
                     }
                 },
                 {
-                    "type": "친구",
+                    "type": "TRAINS_WITH",
                     "start_node_id": "N0",
                     "end_node_id": "N2",
                     "properties": {
-                        "episode_number": "1"
+                        "episode_number": "S1E3"
                     }
                 },
                 {
-                    "type": "변신",
+                    "type": "FIGHTS",
                     "start_node_id": "N0",
                     "end_node_id": "N3",
                     "properties": {
-                        "episode_number": "5"
+                        "episode_number": "S1E24"
                     }
                 }
             ]

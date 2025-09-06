@@ -39,10 +39,11 @@ def fetch_episode(link: str) -> List[dict]:
 def main() -> None:
     """여러 시즌의 에피소드를 가져와서 하나의 JSON 파일로 데이터 수집"""
     episode_links = [
-        "https://en.wikipedia.org/wiki/Attack_on_Titan_season_1",
-        # "https://en.wikipedia.org/wiki/Attack_on_Titan_season_2",
-        # "https://en.wikipedia.org/wiki/Attack_on_Titan_season_3",
-        # "https://en.wikipedia.org/wiki/Attack_on_Titan_season_4",
+        "https://en.wikipedia.org/wiki/Demon_Slayer:_Kimetsu_no_Yaiba_season_1" ## 귀멸의 칼날 시즌 1
+        
+        # "https://en.wikipedia.org/wiki/Demon_Slayer:_Kimetsu_no_Yaiba_season_2" ## 귀멸의 칼날 시즌 2
+        # "https://en.wikipedia.org/wiki/Attack_on_Titan_season_1", ## 진격의 거인 시즌 1
+
     ]
     
     all_episodes = []

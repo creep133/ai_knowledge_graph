@@ -4,24 +4,36 @@ from typing import List
 from utils import  GraphResponse, combine_chunk_graphs, llm_call_structured, UPDATED_TEMPLATE
 
 
-# 노드 이름 한글 매핑
+
+
+
+# 노드 이름 한글 매핑 (귀살대 · 도깨비)
 KOREAN_NODE_MAP = {
-    "Eren Jaeger": "에렌 예거",
-    "Mikasa Ackerman": "미카사 아커만",
-    "Armin Arlert": "아르민 알레르트", 
-    "Levi Ackerman": "리바이 아커만",
-    "Erwin Smith": "에르빈 스미스",
-    "Hange Zoë": "한지 조에",
-    "Jean Kirstein": "장 키르슈타인",
-    "Reiner Braun": "라이너 브라운",
-    "Bertholdt Hoover": "베르톨트 후버",
-    "Annie Leonhart": "애니 레온하트",
-    "Grisha Jaeger": "그리샤 예거",
-    "Female Titan": "여성형 거인",
-    "Eren's Titan": "진격의 거인",
-    "Colossal Titan": "초대형 거인",
-    "Armored Titan": "갑옷 거인"
+    # 귀살대 (Demon Slayer Corps)
+    "Tanjiro Kamado": "카마도 탄지로",
+    "Nezuko Kamado": "카마도 네즈코",
+    "Giyu Tomioka": "토미오카 기유",
+    "Sakonji Urokodaki": "우로코다키 사콘지",
+    "Sabito": "사비토",
+    "Makomo": "마코모",
+    "Zenitsu Agatsuma": "아가츠마 젠이츠",
+    "Inosuke Hashibira": "하시비라 이노스케",
+    "Kanao Tsuyuri": "츠유리 카나오",
+    "Kyojuro Rengoku": "렌고쿠 쿄쥬로",
+    "Kagaya Ubuyashiki": "우부야시키 카가야",
+    "Shinobu Kocho": "코쵸우 시노부",
+    "Sanemi Shinazugawa": "시나즈가와 사네미",
+
+    # 도깨비 (Demons)
+    "Muzan Kibutsuji": "키부츠지 무잔",
+    "Susamaru": "스사마루",
+    "Yahaba": "야하바",
+    "Kyogai": "쿄우가이",
+    "Rui": "루이",
+    "Enmu": "엔무",
 }
+
+
 
 if __name__ == "__main__":
     
@@ -30,7 +42,7 @@ if __name__ == "__main__":
         episodes = json.load(f)
 
    # 첫 1개 에피소드만 테스트    
-    sample_episodes = episodes [:1]
+    sample_episodes = episodes 
     
     chunk_graphs: List[GraphResponse] = []
     
