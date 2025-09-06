@@ -40,6 +40,9 @@ uv run 4_process_data_upgrade.py
 
 ```
 
+## Neo4j 프롬프트 템플릿
+https://github.com/neo4j/neo4j-graphrag-python/blob/main/src/neo4j_graphrag/generation/prompts.py
+
 ## 지식그래프 시각화 3가지 방법
 1. 3_visualize_data.py 을 이용해서 html 실행
 2. 시각화도구/index.html 활용
