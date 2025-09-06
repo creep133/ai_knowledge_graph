@@ -39,3 +39,8 @@ uv run 3_visualize_data.py
 uv run 4_process_data_upgrade.py
 
 ```
+
+## 지식그래프 시각화 3가지 방법
+1. 3_visualize_data.py 을 이용해서 html 실행
+2. 시각화도구/index.html 활용
+3. https://visualize-knowledge-graph.vercel.app 활용

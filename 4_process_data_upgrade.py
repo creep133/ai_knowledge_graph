@@ -29,14 +29,17 @@ if __name__ == "__main__":
     with open("output/1_원본데이터.json", encoding="utf-8") as f:
         episodes = json.load(f)
 
+   # 첫 1개 에피소드만 테스트    
+    sample_episodes = episodes [:1]
+    
     chunk_graphs: List[GraphResponse] = []
     
-    for episode in episodes:
+    for episode in sample_episodes:
         print(f"에피소드 처리 중: 시즌 {episode["season"]}, 에피소드 {episode["episode_in_season"]}")
         
         try:
             # (1) 업데이트된 프롬프트를 반영해서 노드 표준화
-            prompt = UPDATED_TEMPLATE + f"\n 입력값\n {episode.synopsis}"
+            prompt = UPDATED_TEMPLATE + f"\n 입력값\n {episode["synopsis"]}"
             graph_response = llm_call_structured(prompt)
 
             # (2) 에피소드 번호를 관계에 추가 (ex. S1E01)

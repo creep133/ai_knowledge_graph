@@ -66,12 +66,9 @@ Also extract the relationships between these nodes. Return the result as JSON us
 }
 
 Additional rules:
-- **Select nodes strictly from the NODES list below**. Do not invent new nodes or use any name not in the list.
-- Assign a unique ID (string) from the NODES list to each node, and reuse it to define relationships.
-- Do respect the source and target node types for relationship and the relationship direction.
-- Return only the JSON object, without any extra text or backticks.
-- The JSON object must not be wrapped in a list.
-- Property names must be enclosed in double quotes.
+- Use only nodes from the NODES list. Do not invent or substitute nodes.
+- Skip any relationship if one of its entities is not in NODES.
+- Only output valid relationships where both endpoints exist in NODES and the direction matches their types.
 
 NODES =
 [
