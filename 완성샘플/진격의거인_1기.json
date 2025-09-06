@@ -1,0 +1,1460 @@
+{
+  "nodes": [
+    {
+      "id": "N0",
+      "label": "사람",
+      "properties": {
+        "name": "에렌 예거"
+      }
+    },
+    {
+      "id": "N1",
+      "label": "사람",
+      "properties": {
+        "name": "미카사 아커만"
+      }
+    },
+    {
+      "id": "N10",
+      "label": "사람",
+      "properties": {
+        "name": "그리샤 예거"
+      }
+    },
+    {
+      "id": "N13",
+      "label": "거인",
+      "properties": {
+        "name": "초대형 거인"
+      }
+    },
+    {
+      "id": "N2",
+      "label": "사람",
+      "properties": {
+        "name": "아르민 알레르트"
+      }
+    },
+    {
+      "id": "N14",
+      "label": "거인",
+      "properties": {
+        "name": "갑옷 거인"
+      }
+    },
+    {
+      "id": "N6",
+      "label": "사람",
+      "properties": {
+        "name": "장 키르슈타인"
+      }
+    },
+    {
+      "id": "N7",
+      "label": "사람",
+      "properties": {
+        "name": "라이너 브라운"
+      }
+    },
+    {
+      "id": "N8",
+      "label": "사람",
+      "properties": {
+        "name": "베르톨트 후버"
+      }
+    },
+    {
+      "id": "N9",
+      "label": "사람",
+      "properties": {
+        "name": "애니 레온하트"
+      }
+    },
+    {
+      "id": "N12",
+      "label": "거인",
+      "properties": {
+        "name": "진격의 거인"
+      }
+    },
+    {
+      "id": "N3",
+      "label": "사람",
+      "properties": {
+        "name": "리바이 아커만"
+      }
+    },
+    {
+      "id": "N4",
+      "label": "사람",
+      "properties": {
+        "name": "에르빈 스미스"
+      }
+    },
+    {
+      "id": "N5",
+      "label": "사람",
+      "properties": {
+        "name": "한지 조에"
+      }
+    },
+    {
+      "id": "N11",
+      "label": "거인",
+      "properties": {
+        "name": "여성형 거인"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "FRIENDS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "FATHER_OF",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "DESTROYS_GATE",
+      "start_node_id": "N13",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "Shiganshina District",
+        "episode_number": "S1E01"
+      }
+    },
+    {
+      "type": "RELATED_TO",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "RELATED_TO",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "PARENT_OF",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "BREACHED",
+      "start_node_id": "N14",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "Wall Maria",
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "BREACHED",
+      "start_node_id": "N14",
+      "end_node_id": "N1",
+      "properties": {
+        "location": "Wall Maria",
+        "episode_number": "S1E02"
+      }
+    },
+    {
+      "type": "RIVAL",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "ASKS_HELP",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "ASKS_HELP",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED_TITANS",
+      "start_node_id": "N0",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED_TITANS",
+      "start_node_id": "N7",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED_TITANS",
+      "start_node_id": "N8",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E03"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N9",
+      "properties": {
+        "context": "hand-to-hand combat",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "HOPES_TO_JOIN",
+      "start_node_id": "N6",
+      "end_node_id": "N6",
+      "properties": {
+        "organization": "Military Police Regiment",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "JOINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "team": "Scout Regiment",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "JOINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "team": "Scout Regiment",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "JOINS_WITH",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "team": "Scout Regiment",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "BREACHES_GATE",
+      "start_node_id": "N13",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "Trost District",
+        "episode_number": "S1E04"
+      }
+    },
+    {
+      "type": "ATTEMPTS_TO_ATTACK",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E05"
+      }
+    },
+    {
+      "type": "COMRADE_OF",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E05"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N0",
+      "end_node_id": "N10",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N10",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E06"
+      }
+    },
+    {
+      "type": "LEARNS",
+      "start_node_id": "N1",
+      "end_node_id": "N2",
+      "properties": {
+        "about": "Eren's death",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "SUPPORTS",
+      "start_node_id": "N1",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "COMMANDS",
+      "start_node_id": "N6",
+      "end_node_id": "N6",
+      "properties": {
+        "context": "leads squad to headquarters",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "SAVES",
+      "start_node_id": "N12",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "OBSERVES",
+      "start_node_id": "N2",
+      "end_node_id": "N12",
+      "properties": {
+        "context": "fighting other Titans",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "GIVES",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "item": "gas tanks and blades",
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "RELUCTANT_TO_LEAVE",
+      "start_node_id": "N1",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E07"
+      }
+    },
+    {
+      "type": "HAS_IDEA",
+      "start_node_id": "N2",
+      "end_node_id": "N12",
+      "properties": {
+        "description": "lure mysterious Titan to fight other Titans",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "EMERGES_FROM",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "description": "Eren emerges from Titan's body",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "REGENERATES",
+      "start_node_id": "N0",
+      "end_node_id": "N0",
+      "properties": {
+        "body_parts": "leg and arm",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "REALIZES",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "observation": "Eren regenerated lost limbs",
+        "episode_number": "S1E08"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FRIEND_OF",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FRIEND_OF",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "COMMANDS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "COMMANDS",
+      "start_node_id": "N3",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "COMMANDS",
+      "start_node_id": "N3",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "FATHER_OF",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E09"
+      }
+    },
+    {
+      "type": "HAS_TITAN",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "FRIEND",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "FRIEND",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "FRIEND",
+      "start_node_id": "N1",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "FATHER",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E10"
+      }
+    },
+    {
+      "type": "HELPS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "JOINS",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "reason": "her extraordinary skill",
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "ATTACKS",
+      "start_node_id": "N12",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E11"
+      }
+    },
+    {
+      "type": "REASONS_WITH",
+      "start_node_id": "N1",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "INVESTIGATES",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N6",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "STABS",
+      "start_node_id": "N2",
+      "end_node_id": "N12",
+      "properties": {
+        "location": "left arm",
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "CONTROLS",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E12"
+      }
+    },
+    {
+      "type": "ESCAPES_WITH_HELP",
+      "start_node_id": "N9",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "ESCAPES_WITH_HELP",
+      "start_node_id": "N9",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "ESCAPES_WITH_HELP",
+      "start_node_id": "N9",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "CARRIES_BOULDER",
+      "start_node_id": "N12",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "SAVES",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "SAVES",
+      "start_node_id": "N3",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "VISITS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "VISITS",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "TAKES_INTO_SQUAD",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "HOLDS_KEY",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E13"
+      }
+    },
+    {
+      "type": "BEATS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "MAKES_AMENDS_WITH",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "MAKES_AMENDS_WITH",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E14"
+      }
+    },
+    {
+      "type": "BRINGS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "old Scout Regiment headquarters",
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "purpose": "training to control Titan powers",
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "DISCUSS",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "topic": "proving Eren's usefulness",
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "EXPERIMENTS_WITH",
+      "start_node_id": "N5",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E15"
+      }
+    },
+    {
+      "type": "JOINS",
+      "start_node_id": "N9",
+      "end_node_id": "N0",
+      "properties": {
+        "branch": "Military Police Regiment",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N6",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N1",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N2",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N7",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "LEADS",
+      "start_node_id": "N4",
+      "end_node_id": "N8",
+      "properties": {
+        "event": "Decision Ceremony",
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "REUNITES_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E16"
+      }
+    },
+    {
+      "type": "CAPTURES",
+      "start_node_id": "N11",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "RELEASES",
+      "start_node_id": "N11",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "RESCUES",
+      "start_node_id": "N7",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "RESCUES",
+      "start_node_id": "N6",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "TARGETS",
+      "start_node_id": "N11",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E17"
+      }
+    },
+    {
+      "type": "ENCOUNTERED",
+      "start_node_id": "N2",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "ENCOUNTERED",
+      "start_node_id": "N7",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "ENCOUNTERED",
+      "start_node_id": "N6",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "SURVIVED_WITH",
+      "start_node_id": "N2",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "SURVIVED_WITH",
+      "start_node_id": "N2",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "SURVIVED_WITH",
+      "start_node_id": "N7",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "CONFRONTED_BY",
+      "start_node_id": "N0",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "LEADER_OF",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "LEADER_OF",
+      "start_node_id": "N4",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "FOLLOWS_ORDER_OF",
+      "start_node_id": "N3",
+      "end_node_id": "N4",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "IN_SQUAD_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E18"
+      }
+    },
+    {
+      "type": "ORDERS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "TRUSTS",
+      "start_node_id": "N0",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "TRUSTS",
+      "start_node_id": "N0",
+      "end_node_id": "N5",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "CONDUCTS_EXPERIMENT_ON",
+      "start_node_id": "N5",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N0",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "COMMANDS_WITH",
+      "start_node_id": "N3",
+      "end_node_id": "N4",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "AMBUSES",
+      "start_node_id": "N4",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E19"
+      }
+    },
+    {
+      "type": "USED_AS_BAIT_BY",
+      "start_node_id": "N0",
+      "end_node_id": "N4",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "COMMANDS",
+      "start_node_id": "N4",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "ATTACKED_BY_TITANS",
+      "start_node_id": "N11",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E20"
+      }
+    },
+    {
+      "type": "REALIZES_DIFFERENCE",
+      "start_node_id": "N4",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "COMPARES",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "CHASES",
+      "start_node_id": "N11",
+      "end_node_id": "N3",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "THEORIZES",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "ATTEMPTS_TO_TRANSFORM",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "PROTECTS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N12",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "DEFEATS",
+      "start_node_id": "N11",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "INTERVENES",
+      "start_node_id": "N1",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "WARNS",
+      "start_node_id": "N3",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E21"
+      }
+    },
+    {
+      "type": "DEBILITATES",
+      "start_node_id": "N3",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "SAVES",
+      "start_node_id": "N3",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "RETRIEVES",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "INJURES",
+      "start_node_id": "N3",
+      "end_node_id": "N3",
+      "properties": {
+        "body_part": "leg",
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "INJURES",
+      "start_node_id": "N3",
+      "end_node_id": "N11",
+      "properties": {
+        "result": "badly wounded",
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "KILLS",
+      "start_node_id": "N1",
+      "end_node_id": "거인",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "RETRIEVES",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "order": "summoned",
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "ORDERED_TO_BE_HANDED_OVER",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E22"
+      }
+    },
+    {
+      "type": "CALLS_AWAY",
+      "start_node_id": "N2",
+      "end_node_id": "N9",
+      "properties": {
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "ASKS_FOR_HELP",
+      "start_node_id": "N2",
+      "end_node_id": "N9",
+      "properties": {
+        "purpose": "smuggling Eren",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "BRINGS_TO_LOCATION",
+      "start_node_id": "N2",
+      "end_node_id": "N9",
+      "properties": {
+        "location": "tunnel",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "BRINGS_TO_LOCATION",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "location": "tunnel",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "BRINGS_TO_LOCATION",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "location": "tunnel",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "IN_DISGUISE_AS",
+      "start_node_id": "N6",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "IS_SUSPECTED_AS",
+      "start_node_id": "N9",
+      "end_node_id": "N11",
+      "properties": {
+        "by": "Armin Arlert",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N9",
+      "end_node_id": "N11",
+      "properties": {
+        "method": "ring spike",
+        "episode_number": "S1E23"
+      }
+    },
+    {
+      "type": "INFORMED",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "SUSPECTED_AS",
+      "start_node_id": "N9",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "DEDUCED",
+      "start_node_id": "N2",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "PLANS_TO_CAPTURE",
+      "start_node_id": "N4",
+      "end_node_id": "N9",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "FEELINGS_FOR",
+      "start_node_id": "N0",
+      "end_node_id": "N9",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRANSFORMS_TO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "ENCOURAGES",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "ENCOURAGES",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E24"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "TRANSFORMS_INTO",
+      "start_node_id": "N9",
+      "end_node_id": "N11",
+      "properties": {
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "FIGHTS",
+      "start_node_id": "N12",
+      "end_node_id": "N11",
+      "properties": {
+        "location": "Stohess District",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "COMMANDS_OPERATION",
+      "start_node_id": "N4",
+      "end_node_id": "N0",
+      "properties": {
+        "operation": "against Annie",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "CUTS_OFF",
+      "start_node_id": "N1",
+      "end_node_id": "N9",
+      "properties": {
+        "body_part": "fingers",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "STOPS",
+      "start_node_id": "N3",
+      "end_node_id": "N0",
+      "properties": {
+        "reason": "Annie must be captured alive",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "CAPTURES",
+      "start_node_id": "N0",
+      "end_node_id": "N9",
+      "properties": {
+        "status": "custody",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "IS_ARRESTED_BY",
+      "start_node_id": "N4",
+      "end_node_id": "N4",
+      "properties": {
+        "who": "Nile",
+        "episode_number": "S1E25"
+      }
+    },
+    {
+      "type": "OPERATION_RESPONSIBLE_FOR",
+      "start_node_id": "N4",
+      "end_node_id": "N11",
+      "properties": {
+        "operation": "Stohess District",
+        "episode_number": "S1E25"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지식 그래프 시각화</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Custom dark theme */
+        :root {
+            --background: oklch(0.145 0 0);
+            --foreground: oklch(0.985 0 0);
+            --card: oklch(0.145 0 0);
+            --card-foreground: oklch(0.985 0 0);
+            --primary: oklch(0.985 0 0);
+            --primary-foreground: oklch(0.205 0 0);
+            --secondary: oklch(0.269 0 0);
+            --secondary-foreground: oklch(0.985 0 0);
+            --muted: oklch(0.269 0 0);
+            --muted-foreground: oklch(0.708 0 0);
+            --accent: oklch(0.269 0 0);
+            --accent-foreground: oklch(0.985 0 0);
+            --destructive: oklch(0.396 0.141 25.723);
+            --destructive-foreground: oklch(0.637 0.237 25.331);
+            --border: oklch(0.269 0 0);
+            --input: oklch(0.269 0 0);
+            --ring: oklch(0.439 0 0);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* Custom scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #1e293b;
+        }
+        
+        *::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        *::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 8px;
+        }
+        
+        *::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 8px;
+            border: 2px solid #1e293b;
+        }
+        
+        *::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617'
+                        },
+                        blue: {
+                            400: '#60a5fa',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        purple: {
+                            400: '#a78bfa'
+                        },
+                        yellow: {
+                            300: '#fde047',
+                            400: '#facc15'
+                        },
+                        red: {
+                            400: '#f87171',
+                            800: '#991b1b',
+                            950: '#450a0a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useCallback, useEffect, useRef, useMemo } = React;
+
+        // Color palette for dynamic assignment
+        const COLOR_PALETTE = [
+            "#e17055", "#00b894", "#0984e3", "#6c5ce7", "#a29bfe",
+            "#fd79a8", "#fdcb6e", "#e84393", "#00cec9", "#55a3ff",
+            "#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#ffeaa7",
+            "#dda0dd", "#98d8c8", "#f7dc6f", "#bb8fce", "#85c1e9",
+            "#ff7675", "#55efc4", "#81ecec", "#74b9ff", "#fab1a0"
+        ];
+
+        function getColorForNodeType(nodeType) {
+            let hash = 0;
+            for (let i = 0; i < nodeType.length; i++) {
+                const char = nodeType.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            
+            const colorIndex = Math.abs(hash) % COLOR_PALETTE.length;
+            return COLOR_PALETTE[colorIndex];
+        }
+
+        function convertToVis(json) {
+            const visNodes = (json.nodes || []).map((n) => {
+                const id = String(n.id);
+                const group = n.label || "Node";
+                const props = n.properties || {};
+                const title = makeTitle(group, props);
+
+                return {
+                    id,
+                    label: props.name || n.label || id,
+                    group,
+                    shape: "dot",
+                    size: 24,
+                    color: getColorForNodeType(group),
+                    font: { color: "white" },
+                    title,
+                };
+            });
+
+            const visEdges = (json.relationships || []).map((e, i) => ({
+                id: `e_${i}`,
+                from: String(e.start_node_id),
+                to: String(e.end_node_id),
+                label: e.type || "",
+                title: (e.type || "RELATES") + propsTable(e.properties || {}),
+                arrows: { to: { enabled: true, scaleFactor: 1.2 } },
+                width: 2,
+                color: "#888",
+                font: { color: "white", size: 10, strokeColor: "black", strokeWidth: 2 },
+            }));
+
+            return { visNodes, visEdges };
+        }
+
+        function makeTitle(group, props) {
+            return group + propsTable(props);
+        }
+
+        function propsTable(props) {
+            const keys = Object.keys(props || {});
+            if (!keys.length) return "";
+            return "\n" + keys.map((k) => `${k}: ${String(props[k])}`).join("\n");
+        }
+
+        // Filter utilities
+        function getNestedProperty(obj, path) {
+            return path.split('.').reduce((current, key) => {
+                return current && current[key] !== undefined ? current[key] : undefined;
+            }, obj);
+        }
+
+        function filterRelationships(relationships, conditions) {
+            return relationships.filter(relationship => {
+                return Object.entries(conditions).every(([key, value]) => {
+                    const propValue = getNestedProperty(relationship, key);
+                    
+                    if (Array.isArray(value)) {
+                        return value.includes(propValue);
+                    } else if (typeof value === 'function') {
+                        return value(propValue);
+                    } else {
+                        return propValue === value;
+                    }
+                });
+            });
+        }
+
+        function createFilteredGraph(knowledgeGraph, relationshipOptions = {}, nodeConditions = {}) {
+            let filteredRelationships = knowledgeGraph.relationships;
+            
+            if (relationshipOptions.customFilter && typeof relationshipOptions.customFilter === 'function') {
+                filteredRelationships = filteredRelationships.filter(relationshipOptions.customFilter);
+            }
+            
+            const usedNodeIds = new Set();
+            filteredRelationships.forEach(rel => {
+                usedNodeIds.add(rel.start_node_id);
+                usedNodeIds.add(rel.end_node_id);
+            });
+            
+            let filteredNodes = knowledgeGraph.nodes.filter(node => usedNodeIds.has(node.id));
+            
+            return {
+                nodes: filteredNodes,
+                relationships: filteredRelationships
+            };
+        }
+
+        // UI Components
+        function Button({ children, onClick, className = "", variant = "default", size = "default", disabled = false, ...props }) {
+            const baseClasses = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50";
+            
+            const variants = {
+                default: "bg-blue-600 text-white shadow-sm hover:bg-blue-700",
+                outline: "border border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white",
+                secondary: "bg-slate-700 text-slate-200 hover:bg-slate-600"
+            };
+            
+            const sizes = {
+                default: "h-9 px-4 py-2",
+                sm: "h-8 px-3 py-1.5 text-xs"
+            };
+            
+            const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
+            
+            return (
+                <button 
+                    className={classes} 
+                    onClick={onClick} 
+                    disabled={disabled}
+                    {...props}
+                >
+                    {children}
+                </button>
+            );
+        }
+
+        function Card({ children, className = "" }) {
+            return (
+                <div className={`bg-slate-900/50 border border-slate-800 rounded-xl backdrop-blur-sm ${className}`}>
+                    {children}
+                </div>
+            );
+        }
+
+        function Textarea({ value, onChange, placeholder, className = "", ...props }) {
+            return (
+                <textarea
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    className={`w-full p-3 bg-slate-950/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-500 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+                    {...props}
+                />
+            );
+        }
+
+        function Checkbox({ checked, onChange, id, className = "" }) {
+            return (
+                <input
+                    type="checkbox"
+                    id={id}
+                    checked={checked}
+                    onChange={(e) => onChange(e.target.checked)}
+                    className={`w-4 h-4 bg-slate-800 border border-slate-600 rounded focus:ring-2 focus:ring-blue-500 checked:bg-blue-600 checked:border-blue-600 ${className}`}
+                />
+            );
+        }
+
+        function Badge({ children, variant = "default", className = "" }) {
+            const variants = {
+                default: "bg-slate-800/50 text-slate-300 border-slate-700",
+                secondary: "bg-blue-900/50 text-blue-300 border-blue-800"
+            };
+            
+            return (
+                <span className={`inline-flex items-center px-2 py-1 text-xs font-medium border rounded-md ${variants[variant]} ${className}`}>
+                    {children}
+                </span>
+            );
+        }
+
+        // Main Components
+        function JsonInput({ onDataLoad, error }) {
+            const [jsonText, setJsonText] = useState(`{
+  "nodes": [
+    {
+      "id": "N0",
+      "label": "사람",
+      "properties": {
+        "name": "에렌 예거"
+      }
+    },
+    {
+      "id": "N1",
+      "label": "사람",
+      "properties": {
+        "name": "미카사 아커만"
+      }
+    },
+    {
+      "id": "N10",
+      "label": "사람",
+      "properties": {
+        "name": "그리샤 예거"
+      }
+    },
+    {
+      "id": "N13",
+      "label": "거인",
+      "properties": {
+        "name": "초대형 거인"
+      }
+    },
+    {
+      "id": "N2",
+      "label": "사람",
+      "properties": {
+        "name": "아르민 알레르트"
+      }
+    },
+    {
+      "id": "N7",
+      "label": "사람",
+      "properties": {
+        "name": "라이너 브라운"
+      }
+    },
+    {
+      "id": "N14",
+      "label": "거인",
+      "properties": {
+        "name": "갑옷 거인"
+      }
+    },
+    {
+      "id": "N12",
+      "label": "거인",
+      "properties": {
+        "name": "진격의 거인"
+      }
+    },
+    {
+      "id": "N6",
+      "label": "사람",
+      "properties": {
+        "name": "장 키르슈타인"
+      }
+    },
+    {
+      "id": "N8",
+      "label": "사람",
+      "properties": {
+        "name": "베르톨트 후버"
+      }
+    },
+    {
+      "id": "N9",
+      "label": "사람",
+      "properties": {
+        "name": "애니 레온하트"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IS_FRIEND_OF",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E1"
+      }
+    },
+    {
+      "type": "IS_FATHER_OF",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E1"
+      }
+    },
+    {
+      "type": "DESTROYS_GATE",
+      "start_node_id": "N13",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E1"
+      }
+    },
+    {
+      "type": "JOINS_ARMY_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "JOINS_ARMY_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "JOINS_ARMY_WITH",
+      "start_node_id": "N1",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "VOWS_TO_ERADICATE",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "BREACHES_WALL",
+      "start_node_id": "N14",
+      "end_node_id": "N0",
+      "properties": {
+        "wall": "Wall Maria",
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "BREACHES_WALL",
+      "start_node_id": "N14",
+      "end_node_id": "N1",
+      "properties": {
+        "wall": "Wall Maria",
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "IS_ARMOR_TITAN_SHIFTER",
+      "start_node_id": "N7",
+      "end_node_id": "N14",
+      "properties": {
+        "episode_number": "S1E2"
+      }
+    },
+    {
+      "type": "RIVAL",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "ASKS_HELP",
+      "start_node_id": "N0",
+      "end_node_id": "N7",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "ASKS_HELP",
+      "start_node_id": "N0",
+      "end_node_id": "N8",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED",
+      "start_node_id": "N0",
+      "end_node_id": "N12",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED",
+      "start_node_id": "N7",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "PERSONALLY_ENCOUNTERED",
+      "start_node_id": "N8",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E3"
+      }
+    },
+    {
+      "type": "TRAINS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N9",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "LEARNS_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N6",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "JOINS_REGIMENT_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "JOINS_REGIMENT_WITH",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "SHOCKED_BY",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "SHOCKED_BY",
+      "start_node_id": "N6",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E4"
+      }
+    },
+    {
+      "type": "ATTACKED",
+      "start_node_id": "N0",
+      "end_node_id": "N13",
+      "properties": {
+        "episode_number": "S1E5"
+      }
+    },
+    {
+      "type": "ATTEMPTED_TO_SAVE",
+      "start_node_id": "N0",
+      "end_node_id": "N2",
+      "properties": {
+        "episode_number": "S1E5"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N2",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N2",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N1",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    },
+    {
+      "type": "KNOWS",
+      "start_node_id": "N0",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N10",
+      "end_node_id": "N0",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    },
+    {
+      "type": "FAMILY",
+      "start_node_id": "N10",
+      "end_node_id": "N1",
+      "properties": {
+        "episode_number": "S1E6"
+      }
+    }
+  ]
+}`);
+
+            const handleRender = () => {
+                if (!jsonText.trim()) {
+                    alert('먼저 JSON 데이터를 입력해주세요.');
+                    return;
+                }
+
+                try {
+                    const parsed = JSON.parse(jsonText);
+                    onDataLoad(parsed);
+                } catch (err) {
+                    alert('JSON 형식이 올바르지 않습니다. 입력을 확인해주세요.');
+                    console.error(err);
+                }
+            };
+
+            return (
+                <Card className="p-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                        <div className="lg:col-span-3">
+                            <label className="block text-slate-200 mb-2">JSON 붙여넣기 (노드/관계)</label>
+                            <Textarea
+                                value={jsonText}
+                                onChange={(e) => setJsonText(e.target.value)}
+                                placeholder='{"nodes": [...], "relationships": [...]}'
+                                className="h-16"
+                            />
+                            <div className="text-xs text-slate-400 mt-2">
+                                <strong>스키마:</strong> nodes: [&#123; id, label, properties:&#123;&#125; &#125;], relationships: [&#123; type, start_node_id, end_node_id, properties:&#123;&#125; &#125;]
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-1">
+                            <label className="block text-slate-200 mb-2">작업</label>
+                            <Button onClick={handleRender} className="w-full">
+                                그래프 시각화
+                            </Button>
+                        </div>
+                    </div>
+
+                    {error && (
+                        <div className="mt-4 p-3 bg-red-950/50 border border-red-800 rounded-lg text-red-200">
+                            {error}
+                        </div>
+                    )}
+                </Card>
+            );
+        }
+
+        function NetworkVisualization({ visData, className = "", selectedNodeType = null }) {
+            const containerRef = useRef(null);
+            const networkRef = useRef(null);
+            const nodesDataSetRef = useRef(null);
+            const edgesDataSetRef = useRef(null);
+            const [isLoading, setIsLoading] = useState(true);
+            const [error, setError] = useState("");
+
+            useEffect(() => {
+                const loadVisNetwork = async () => {
+                    try {
+                        if (!window.vis) {
+                            return;
+                        }
+                        setIsLoading(false);
+                    } catch (err) {
+                        setError("Failed to load vis-network library");
+                        setIsLoading(false);
+                        console.error(err);
+                    }
+                };
+
+                loadVisNetwork();
+            }, []);
+
+            useEffect(() => {
+                if (isLoading || error || !containerRef.current || !window.vis) return;
+
+                try {
+                    const container = containerRef.current;
+
+                    nodesDataSetRef.current = new window.vis.DataSet(visData.visNodes);
+                    edgesDataSetRef.current = new window.vis.DataSet(visData.visEdges);
+
+                    const data = {
+                        nodes: nodesDataSetRef.current,
+                        edges: edgesDataSetRef.current,
+                    };
+
+                    const options = {
+                        physics: {
+                            solver: "forceAtlas2Based",
+                            forceAtlas2Based: {
+                                gravitationalConstant: -50,
+                                centralGravity: 0.008,
+                                springLength: 150,
+                                springConstant: 0.05,
+                                damping: 0.4,
+                                avoidOverlap: 0.1,
+                            },
+                            stabilization: { iterations: 150 },
+                            minVelocity: 0.75,
+                        },
+                        interaction: {
+                            hover: true,
+                            tooltipDelay: 150,
+                            hideEdgesOnDrag: true,
+                        },
+                    };
+
+                    if (networkRef.current) {
+                        networkRef.current.destroy();
+                    }
+
+                    networkRef.current = new window.vis.Network(container, data, options);
+                } catch (err) {
+                    setError("Failed to create network visualization");
+                    console.error(err);
+                }
+
+                return () => {
+                    if (networkRef.current) {
+                        networkRef.current.destroy();
+                        networkRef.current = null;
+                    }
+                };
+            }, [visData, isLoading, error]);
+
+            useEffect(() => {
+                if (!nodesDataSetRef.current || !visData.visNodes.length) return;
+
+                const updatedNodes = visData.visNodes.map((node) => {
+                    const isHighlighted = selectedNodeType && node.group === selectedNodeType;
+                    const isDimmed = selectedNodeType && node.group !== selectedNodeType;
+
+                    return {
+                        id: node.id,
+                        borderWidth: isHighlighted ? 4 : 1,
+                        borderWidthSelected: isHighlighted ? 6 : 2,
+                        color: {
+                            background: node.color,
+                            border: isHighlighted ? "#facc15" : node.color,
+                            highlight: {
+                                background: node.color,
+                                border: isHighlighted ? "#facc15" : node.color,
+                            },
+                        },
+                        opacity: isDimmed ? 0.3 : 1,
+                        shadow: isHighlighted
+                            ? {
+                                  enabled: true,
+                                  color: "#facc15",
+                                  size: 15,
+                                  x: 0,
+                                  y: 0,
+                              }
+                            : false,
+                    };
+                });
+
+                nodesDataSetRef.current.update(updatedNodes);
+            }, [selectedNodeType, visData.visNodes]);
+
+            if (isLoading) {
+                return (
+                    <div className={`bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden backdrop-blur-sm flex items-center justify-center ${className}`}>
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400 mx-auto mb-2"></div>
+                            <p className="text-sm text-slate-400">시각화 로딩 중...</p>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (error) {
+                return (
+                    <div className={`bg-slate-900/50 border border-red-800/50 rounded-xl overflow-hidden backdrop-blur-sm flex items-center justify-center ${className}`}>
+                        <div className="text-center text-red-400">
+                            <p className="font-medium">시각화 오류</p>
+                            <p className="text-sm">{error}</p>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className={`bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden backdrop-blur-sm ${className}`}>
+                    <div 
+                        ref={containerRef} 
+                        className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-950 rounded-xl" 
+                        style={{ minHeight: "400px" }} 
+                    />
+                </div>
+            );
+        }
+
+        function GraphLegends({ visData, onReset, onHighlightNodeType }) {
+            const [activeNodeType, setActiveNodeType] = useState("");
+
+            const nodeTypes = useMemo(() => {
+                const types = new Map();
+                visData.visNodes.forEach((node) => {
+                    const type = node.group || "Unknown";
+                    types.set(type, (types.get(type) || 0) + 1);
+                });
+                return Array.from(types.entries())
+                    .sort()
+                    .map(([type, count]) => ({
+                        type,
+                        count,
+                        color: getColorForNodeType(type),
+                    }));
+            }, [visData.visNodes]);
+
+            const handleNodeTypeClick = (nodeType) => {
+                if (activeNodeType === nodeType) {
+                    setActiveNodeType("");
+                    onReset();
+                } else {
+                    setActiveNodeType(nodeType);
+                    onHighlightNodeType?.(nodeType);
+                }
+            };
+
+            const handleResetAll = () => {
+                setActiveNodeType("");
+                onReset();
+            };
+
+            return (
+                <Card className="p-4">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-semibold text-slate-200">범례</h3>
+                        <Button 
+                            onClick={handleResetAll} 
+                            variant="outline" 
+                            size="sm"
+                            className="flex items-center gap-2"
+                        >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M3 21v-5h5"/>
+                            </svg>
+                            초기화
+                        </Button>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                        {nodeTypes.map(({ type, count, color }) => (
+                            <button
+                                key={type}
+                                onClick={() => handleNodeTypeClick(type)}
+                                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all hover:bg-slate-800/70 ${
+                                    activeNodeType === type ? "bg-slate-800 ring-2 ring-yellow-400 shadow-lg shadow-yellow-400/30" : ""
+                                }`}
+                            >
+                                <div
+                                    className={`w-3 h-3 rounded-full transition-all ${
+                                        activeNodeType === type ? "ring-2 ring-yellow-300 shadow-md shadow-yellow-300/50" : ""
+                                    }`}
+                                    style={{ backgroundColor: color }}
+                                />
+                                <span className="text-sm font-medium text-slate-200">{type}</span>
+                            </button>
+                        ))}
+                    </div>
+                </Card>
+            );
+        }
+
+        function PropertyFilters({ originalData, onFilteredDataChange, onReset }) {
+            const [activeFilters, setActiveFilters] = useState({});
+
+            const relationshipProperties = useMemo(() => {
+                const properties = {};
+
+                originalData.relationships.forEach(rel => {
+                    Object.keys(rel).forEach(key => {
+                        if (!['start_node_id', 'end_node_id', 'properties'].includes(key)) {
+                            if (!properties[key]) properties[key] = new Set();
+                            if (rel[key] != null) {
+                                properties[key].add(String(rel[key]));
+                            }
+                        }
+                    });
+                    
+                    if (rel.properties) {
+                        Object.keys(rel.properties).forEach(key => {
+                            if (!properties[key]) properties[key] = new Set();
+                            if (rel.properties?.[key] != null) {
+                                properties[key].add(String(rel.properties[key]));
+                            }
+                        });
+                    }
+                });
+
+                const result = {};
+                Object.keys(properties).forEach(key => {
+                    result[key] = Array.from(properties[key]).sort();
+                });
+
+                return result;
+            }, [originalData]);
+
+            const handleValueToggle = (property, value) => {
+                setActiveFilters(prev => {
+                    const newFilters = { ...prev };
+                    
+                    if (!newFilters[property]) {
+                        newFilters[property] = [];
+                    }
+                    
+                    if (newFilters[property].includes(value)) {
+                        newFilters[property] = newFilters[property].filter(v => v !== value);
+                        if (newFilters[property].length === 0) {
+                            delete newFilters[property];
+                        }
+                    } else {
+                        newFilters[property] = [...newFilters[property], value].sort();
+                    }
+                    
+                    return newFilters;
+                });
+            };
+
+            useEffect(() => {
+                if (Object.keys(activeFilters).length === 0) {
+                    onFilteredDataChange(originalData);
+                    return;
+                }
+
+                try {
+                    const relationshipOptions = {
+                        customFilter: (rel) => {
+                            return Object.entries(activeFilters).every(([property, values]) => {
+                                if (values.length === 0) return true;
+                                
+                                const relValue = rel[property] !== undefined 
+                                    ? rel[property]
+                                    : rel.properties?.[property];
+                                
+                                return values.includes(String(relValue));
+                            });
+                        }
+                    };
+
+                    const filteredData = createFilteredGraph(originalData, relationshipOptions, {});
+                    onFilteredDataChange(filteredData);
+                } catch (error) {
+                    console.error('Error applying filters:', error);
+                    onFilteredDataChange(originalData);
+                }
+            }, [activeFilters, originalData, onFilteredDataChange]);
+
+            const clearAllFilters = () => {
+                setActiveFilters({});
+                onReset();
+            };
+
+            const getPropertyDisplayName = (property) => {
+                if (property === 'episode_number') return '에피소드';
+                if (property === 'type') return '관계 타입';
+                if (property === 'label') return '노드 레이블';
+                if (property === 'wall') return '벽';
+                return property.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            };
+
+            return (
+                <Card>
+                    <div className="p-4 border-b border-slate-800">
+                        <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-200">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
+                            </svg>
+                            관계 필터
+                        </h3>
+                    </div>
+                    <div className="p-4 space-y-4">
+                        {Object.keys(relationshipProperties).length === 0 ? (
+                            <p className="text-slate-400 text-center py-4">관계 속성을 찾을 수 없습니다</p>
+                        ) : (
+                            Object.entries(relationshipProperties).map(([property, values]) => (
+                                <div key={property} className="space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <Badge variant="default">
+                                            {getPropertyDisplayName(property)}
+                                        </Badge>
+                                        {activeFilters[property] && activeFilters[property].length > 0 && (
+                                            <Badge variant="secondary">
+                                                {activeFilters[property].length} 선택됨
+                                            </Badge>
+                                        )}
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                        {values.map(value => (
+                                            <div key={value} className="flex items-start space-x-2 w-full">
+                                                <Checkbox
+                                                    id={`${property}-${value}`}
+                                                    checked={activeFilters[property]?.includes(value) || false}
+                                                    onChange={() => handleValueToggle(property, value)}
+                                                />
+                                                <label 
+                                                    htmlFor={`${property}-${value}`} 
+                                                    className="text-sm cursor-pointer leading-relaxed break-words flex-1 text-slate-300 hover:text-slate-200"
+                                                    title={value}
+                                                >
+                                                    {value}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                        
+                        {Object.keys(activeFilters).length > 0 && (
+                            <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+                                <div className="text-sm text-slate-400">
+                                    {Object.keys(activeFilters).length} 필터 활성화됨
+                                </div>
+                                <button
+                                    onClick={clearAllFilters}
+                                    className="text-sm text-slate-400 hover:text-slate-200 underline transition-colors"
+                                >
+                                    모든 필터 지우기
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </Card>
+            );
+        }
+
+        function KnowledgeGraph() {
+            const [originalGraphData, setOriginalGraphData] = useState(null);
+            const [filteredGraphData, setFilteredGraphData] = useState(null);
+            const [visData, setVisData] = useState(null);
+            const [error, setError] = useState("");
+            const [selectedNodeType, setSelectedNodeType] = useState(null);
+
+            const handleDataLoad = useCallback((data) => {
+                try {
+                    setOriginalGraphData(data);
+                    setFilteredGraphData(data);
+                    const converted = convertToVis(data);
+                    setVisData(converted);
+                    setError("");
+                    setSelectedNodeType(null);
+                } catch (err) {
+                    setError('그래프 데이터 처리에 실패했습니다');
+                    console.error(err);
+                }
+            }, []);
+
+            const handleFilteredDataChange = useCallback((filteredData) => {
+                try {
+                    setFilteredGraphData(filteredData);
+                    const converted = convertToVis(filteredData);
+                    setVisData(converted);
+                    setSelectedNodeType(null);
+                } catch (err) {
+                    setError('그래프 데이터 처리에 실패했습니다');
+                    console.error(err);
+                }
+            }, []);
+
+            const handleReset = useCallback(() => {
+                setSelectedNodeType(null);
+            }, []);
+
+            const handleFilterReset = useCallback(() => {
+                if (originalGraphData) {
+                    handleFilteredDataChange(originalGraphData);
+                }
+            }, [originalGraphData, handleFilteredDataChange]);
+
+            const handleHighlightNodeType = useCallback((nodeType) => {
+                setSelectedNodeType(nodeType);
+            }, []);
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+                    <div className="container mx-auto py-8 space-y-8 px-4">
+                        <div className="text-center">
+                            <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                                지식 그래프 시각화
+                            </h1>
+                            <p className="text-slate-300 mt-3 text-lg">
+                                JSON 기반 지식 그래프를 로드하고 탐색하세요
+                            </p>
+                        </div>
+
+                        <JsonInput onDataLoad={handleDataLoad} error={error} />
+
+                        {visData && (
+                            <div className="flex flex-col lg:flex-row lg:gap-8 h-[750px]">
+                                <div className="w-full lg:w-[75%] order-2 lg:order-1">
+                                    <NetworkVisualization 
+                                        visData={visData} 
+                                        className="h-full w-full" 
+                                        selectedNodeType={selectedNodeType} 
+                                    />
+                                </div>
+                                <div className="w-full lg:w-[25%] order-1 lg:order-2 mb-4 lg:mb-0 flex flex-col gap-4">
+                                    <div className="lg:h-[30%] min-h-[120px]">
+                                        <GraphLegends 
+                                            visData={visData} 
+                                            onReset={handleReset} 
+                                            onHighlightNodeType={handleHighlightNodeType} 
+                                        />
+                                    </div>
+                                    <div className="lg:h-[70%] flex-1 min-h-[400px] overflow-y-auto">
+                                        {originalGraphData && (
+                                            <PropertyFilters 
+                                                originalData={originalGraphData}
+                                                onFilteredDataChange={handleFilteredDataChange}
+                                                onReset={handleFilterReset}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // Sample data for testing
+        const sampleData = {
+            "nodes": [
+                {
+                    "id": "N0",
+                    "label": "사람",
+                    "properties": {
+                        "name": "에렌 예거"
+                    }
+                },
+                {
+                    "id": "N1",
+                    "label": "사람",
+                    "properties": {
+                        "name": "미카사 아커만"
+                    }
+                },
+                {
+                    "id": "N2",
+                    "label": "사람",
+                    "properties": {
+                        "name": "아르민 알레르트"
+                    }
+                },
+                {
+                    "id": "N3",
+                    "label": "거인",
+                    "properties": {
+                        "name": "초대형 거인"
+                    }
+                }
+            ],
+            "relationships": [
+                {
+                    "type": "친구",
+                    "start_node_id": "N0",
+                    "end_node_id": "N1",
+                    "properties": {
+                        "episode_number": "1"
+                    }
+                },
+                {
+                    "type": "친구",
+                    "start_node_id": "N0",
+                    "end_node_id": "N2",
+                    "properties": {
+                        "episode_number": "1"
+                    }
+                },
+                {
+                    "type": "변신",
+                    "start_node_id": "N0",
+                    "end_node_id": "N3",
+                    "properties": {
+                        "episode_number": "5"
+                    }
+                }
+            ]
+        };
+
+        // Load sample data automatically
+        function App() {
+            const [mounted, setMounted] = useState(false);
+            
+            useEffect(() => {
+                setMounted(true);
+            }, []);
+
+            if (!mounted) return null;
+
+            return <KnowledgeGraph />;
+        }
+
+        // Render the app
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

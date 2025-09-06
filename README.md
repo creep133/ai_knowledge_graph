@@ -1,0 +1,1 @@
+uv add beautifulsoup4 openai python-dotenv pyvis requests
