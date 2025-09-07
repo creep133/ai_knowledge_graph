@@ -44,6 +44,7 @@ uv run 4_process_data_upgrade.py
 <details>
   <summary>아래를 그대로 복사해서 챗GPT에서 활용해도 됩니다</summary>
 
+```text
 You are a top-tier algorithm designed for extracting
 information in structured formats to build a knowledge graph.
 
@@ -71,6 +72,7 @@ Examples:
 {examples}
 
 Input text:
+```
 </details>
 https://github.com/neo4j/neo4j-graphrag-python/blob/main/src/neo4j_graphrag/generation/prompts.py
 
