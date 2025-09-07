@@ -15,7 +15,8 @@
 
 ## 초기 셋팅
 
-2. **OpenAI API 키 설정:**
+2. **OpenAI API 키 설정:** ([OpenAI API 키 발급 가이드](https://github.com/dabidstudio/dabidstudio_guides/blob/main/get-openai-api-key.md))
+
 프로젝트 루트에 `.env` 파일 생성:
 ```
 OPENAI_API_KEY=여기에_API_키_입력
