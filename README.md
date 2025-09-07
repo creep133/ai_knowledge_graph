@@ -41,6 +41,37 @@ uv run 4_process_data_upgrade.py
 ```
 
 ## Neo4j 프롬프트 템플릿
+<details>
+  <summary>아래를 그대로 복사해서 챗GPT에서 활용해도 됩니다</summary>
+
+You are a top-tier algorithm designed for extracting
+information in structured formats to build a knowledge graph.
+
+Extract the entities (nodes) and specify their type from the following text.
+Also extract the relationships between these nodes.
+
+Return result as JSON using the following format:
+{{"nodes": [ {{"id": "0", "label": "Person", "properties": {{"name": "John"}} }}],
+"relationships": [{{"type": "KNOWS", "start_node_id": "0", "end_node_id": "1", "properties": {{"since": "2024-08-01"}} }}] }}
+
+Use only the following node and relationship types (if provided):
+{schema}
+
+Assign a unique ID (string) to each node, and reuse it to define relationships.
+Do respect the source and target node types for relationship and
+the relationship direction.
+
+Make sure you adhere to the following rules to produce valid JSON objects:
+- Do not return any additional information other than the JSON in it.
+- Omit any backticks around the JSON - simply output the JSON on its own.
+- The JSON object must not wrapped into a list - it is its own JSON object.
+- Property names must be enclosed in double quotes
+
+Examples:
+{examples}
+
+Input text:
+</details>
 https://github.com/neo4j/neo4j-graphrag-python/blob/main/src/neo4j_graphrag/generation/prompts.py
 
 ## 지식그래프 시각화 3가지 방법
