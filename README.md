@@ -41,6 +41,10 @@ uv run 4_process_data_upgrade.py
 
 ```
 
+## 활용 데이터
+
+[귀멸의 칼날 시즌 1 위키피디아 문서](https://en.wikipedia.org/wiki/Demon_Slayer:_Kimetsu_no_Yaiba_season_1)
+
 ## Neo4j 프롬프트 템플릿
 <details>
   <summary>아래를 그대로 복사해서 챗GPT에서 활용해도 됩니다</summary>
