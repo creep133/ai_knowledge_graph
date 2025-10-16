@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "label": "Person",
+      "properties": {
+        "name": "Tanjiro Kamado"
+      }
+    },
+    {
+      "id": "1",
+      "label": "Person",
+      "properties": {
+        "name": "Nezuko"
+      }
+    },
+    {
+      "id": "2",
+      "label": "Person",
+      "properties": {
+        "name": "Giyu Tomioka"
+      }
+    },
+    {
+      "id": "3",
+      "label": "Person",
+      "properties": {
+        "name": "Sakonji Urokodaki"
+      }
+    },
+    {
+      "id": "4",
+      "label": "Place",
+      "properties": {
+        "name": "Japan"
+      }
+    },
+    {
+      "id": "5",
+      "label": "Place",
+      "properties": {
+        "name": "snowy mountains"
+      }
+    },
+    {
+      "id": "6",
+      "label": "Place",
+      "properties": {
+        "name": "nearby town"
+      }
+    },
+    {
+      "id": "7",
+      "label": "Place",
+      "properties": {
+        "name": "Mt. Sagiri"
+      }
+    },
+    {
+      "id": "8",
+      "label": "Object",
+      "properties": {
+        "name": "charcoal"
+      }
+    },
+    {
+      "id": "9",
+      "label": "Organization",
+      "properties": {
+        "name": "Demon Slayer"
+      }
+    },
+    {
+      "id": "10",
+      "label": "Species",
+      "properties": {
+        "name": "demon"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "LIVES_IN",
+      "start_node_id": "0",
+      "end_node_id": "5",
+      "properties": null
+    },
+    {
+      "type": "LIVES_IN",
+      "start_node_id": "0",
+      "end_node_id": "4",
+      "properties": null
+    },
+    {
+      "type": "SIBLING_OF",
+      "start_node_id": "0",
+      "end_node_id": "1",
+      "properties": {
+        "order": "older brother"
+      }
+    },
+    {
+      "type": "PROVIDES_FOR",
+      "start_node_id": "0",
+      "end_node_id": "1",
+      "properties": null
+    },
+    {
+      "type": "SELLS",
+      "start_node_id": "0",
+      "end_node_id": "8",
+      "properties": {
+        "location": "nearby town"
+      }
+    },
+    {
+      "type": "TRANSFORMED_INTO",
+      "start_node_id": "1",
+      "end_node_id": "10",
+      "properties": null
+    },
+    {
+      "type": "MEMBER_OF",
+      "start_node_id": "2",
+      "end_node_id": "9",
+      "properties": null
+    },
+    {
+      "type": "SPARES",
+      "start_node_id": "2",
+      "end_node_id": "1",
+      "properties": null
+    },
+    {
+      "type": "FOUGHT_FOR",
+      "start_node_id": "0",
+      "end_node_id": "1",
+      "properties": {
+        "against": "Giyu Tomioka"
+      }
+    },
+    {
+      "type": "ADVISES_TO_FIND",
+      "start_node_id": "2",
+      "end_node_id": "3",
+      "properties": {
+        "message_for": "Tanjiro Kamado"
+      }
+    },
+    {
+      "type": "LOCATED_AT",
+      "start_node_id": "3",
+      "end_node_id": "7",
+      "properties": null
+    },
+    {
+      "type": "LOCATED_IN",
+      "start_node_id": "5",
+      "end_node_id": "4",
+      "properties": null
+    },
+    {
+      "type": "LOCATED_IN",
+      "start_node_id": "6",
+      "end_node_id": "4",
+      "properties": null
+    }
+  ]
+}
