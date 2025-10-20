@@ -1,0 +1,5 @@
+# 모든 텍스트 파일을 Git이 알아서 처리하게 함
+* text=auto
+
+# Jupyter Notebook 파일은 무조건 LF 방식으로 통일
+*.ipynb text eol=lf
