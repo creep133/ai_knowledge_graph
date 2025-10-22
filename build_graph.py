@@ -31,7 +31,7 @@ wiki_api_en = wikipediaapi.Wikipedia(
 # 위키미디어 페이지뷰 API의 기본 주소를 정의합니다.
 PAGEVIEWS_ENDPOINT = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/{project}/{access}/{agent}/{article}/{granularity}/{start}/{end}"
 # 각 문서에서 탐색할 최대 링크 수를 제한하여 프로그램이 너무 오래 실행되는 것을 방지합니다.
-MAX_LINKS_PER_NODE = 15
+MAX_LINKS_PER_NODE = 5
 
 # --- 2. 헬퍼(도우미) 함수 ---
 
